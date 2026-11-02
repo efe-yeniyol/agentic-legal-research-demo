@@ -1,0 +1,71 @@
+{
+  "jurisdiction": "Republic of Northbridge (fictional)",
+  "disclaimer": "Fictional statute for coursework only. Not legal advice. Not a real jurisdiction.",
+  "statutes": [
+    {
+      "id": "NB-CA-12",
+      "title": "Consumer Contracts Act 2019, Section 12",
+      "status": "in_force",
+      "effective_from": "2019-07-01",
+      "text": "A consumer may cancel a distance contract for the supply of goods within fourteen (14) days of delivery without giving a reason, provided the goods are returned unused and in original packaging. The trader must refund the purchase price within fourteen (14) days of receiving the returned goods.",
+      "keywords": ["cancel", "distance", "consumer", "refund", "fourteen days", "cooling-off"]
+    },
+    {
+      "id": "NB-CA-12A",
+      "title": "Consumer Contracts Act 2019, Section 12A",
+      "status": "in_force",
+      "effective_from": "2022-01-01",
+      "text": "Section 12 does not apply to digital content that has been fully downloaded or streamed with the consumer's prior express consent and acknowledgment that the right to cancel is thereby lost.",
+      "keywords": ["digital", "download", "stream", "exception", "cancel"]
+    },
+    {
+      "id": "NB-CA-18",
+      "title": "Consumer Contracts Act 2019, Section 18",
+      "status": "repealed",
+      "effective_from": "2019-07-01",
+      "repealed_on": "2023-03-15",
+      "text": "[REPEALED] Traders may charge a restocking fee of up to 15% on cancelled distance contracts. This section was repealed by the Consumer Fairness Amendment Act 2023.",
+      "keywords": ["restocking", "fee", "cancelled", "repealed"]
+    },
+    {
+      "id": "NB-DP-3",
+      "title": "Data Protection Act 2021, Section 3",
+      "status": "in_force",
+      "effective_from": "2021-05-01",
+      "text": "A data controller must obtain freely given, specific, informed and unambiguous consent before processing personal data for marketing. Silence, pre-ticked boxes or inactivity do not constitute consent.",
+      "keywords": ["consent", "marketing", "personal data", "controller"]
+    },
+    {
+      "id": "NB-DP-9",
+      "title": "Data Protection Act 2021, Section 9",
+      "status": "in_force",
+      "effective_from": "2021-05-01",
+      "text": "A data subject may request erasure of personal data ('right to be forgotten') where the data are no longer necessary for the original purpose, or where consent is withdrawn and there is no other lawful basis for processing. The controller must respond within thirty (30) days.",
+      "keywords": ["erasure", "forgotten", "delete", "data subject", "thirty days"]
+    },
+    {
+      "id": "NB-EL-7",
+      "title": "Employment Standards Act 2018, Section 7",
+      "status": "in_force",
+      "effective_from": "2018-01-01",
+      "text": "An employer must give an employee at least four (4) weeks' written notice of termination, or payment in lieu, after twelve months of continuous service. Notice may not be waived by contract to the employee's detriment.",
+      "keywords": ["termination", "notice", "four weeks", "employment", "payment in lieu"]
+    },
+    {
+      "id": "NB-EL-7B",
+      "title": "Employment Standards Act 2018, Section 7B",
+      "status": "in_force",
+      "effective_from": "2020-06-01",
+      "text": "Summary dismissal without notice is permitted only for gross misconduct as defined in Section 7C. Disputed summary dismissals may be referred to the Northbridge Employment Tribunal within three (3) months.",
+      "keywords": ["summary dismissal", "gross misconduct", "tribunal", "three months"]
+    },
+    {
+      "id": "NB-EL-7C",
+      "title": "Employment Standards Act 2018, Section 7C",
+      "status": "in_force",
+      "effective_from": "2020-06-01",
+      "text": "Gross misconduct means theft, violence at work, serious breach of confidentiality, or wilful refusal to carry out a lawful and reasonable instruction. Poor performance alone is not gross misconduct.",
+      "keywords": ["gross misconduct", "theft", "violence", "confidentiality", "poor performance"]
+    }
+  ]
+}

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Northbridge Research Demo · MIS311</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1c2b3a;
+      --accent: #245b8a;
+      --accent-soft: #dceaf5;
+      --paper: #f7f3eb;
+      --panel: #fffdf8;
+      --line: #d5cdc0;
+      --warn: #8a3b12;
+      --ok: #1f5c45;
+      --muted: #5c6670;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      background:
+        radial-gradient(circle at 12% 0%, #e8eef4 0%, transparent 42%),
+        radial-gradient(circle at 88% 12%, #efe6d6 0%, transparent 36%),
+        var(--paper);
+    }
+    header {
+      padding: 1.75rem 1.5rem 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header .brand {
+      font-family: "Source Serif 4", serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.35rem;
+    }
+    header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 46rem;
+      line-height: 1.5;
+    }
+    .banner {
+      margin-top: 1rem;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid #e2c8b0;
+      background: #fff5eb;
+      color: var(--warn);
+      font-size: 0.92rem;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 900px) {
+      main { grid-template-columns: 1fr; }
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 1.1rem 1.15rem 1.25rem;
+    }
+    .panel h2 {
+      font-family: "Source Serif 4", serif;
+      font-size: 1.15rem;
+      margin: 0 0 0.9rem;
+      font-weight: 600;
+    }
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0.85rem 0 0.35rem;
+    }
+    textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      padding: 0.7rem 0.75rem;
+    }
+    textarea { min-height: 140px; resize: vertical; line-height: 1.45; }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    button {
+      margin-top: 1rem;
+      width: 100%;
+      border: 0;
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-weight: 600;
+      padding: 0.85rem 1rem;
+      cursor: pointer;
+    }
+    button:disabled { opacity: 0.55; cursor: wait; }
+    button:hover:not(:disabled) { filter: brightness(1.05); }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.85rem;
+    }
+    .chip {
+      font-size: 0.78rem;
+      padding: 0.25rem 0.55rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid #b7d0e4;
+    }
+    .answer {
+      white-space: pre-wrap;
+      line-height: 1.55;
+      font-size: 0.98rem;
+      padding: 0.85rem;
+      background: #f3f7fb;
+      border-left: 3px solid var(--accent);
+      min-height: 5rem;
+    }
+    .error {
+      color: #8a1f1f;
+      background: #fdecec;
+      border: 1px solid #efc2c2;
+      padding: 0.7rem 0.8rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.92rem;
+    }
+    .timeline { margin-top: 1rem; display: grid; gap: 0.55rem; }
+    .step {
+      border: 1px solid var(--line);
+      padding: 0.65rem 0.75rem;
+      background: #fff;
+    }
+    .step strong { display: block; margin-bottom: 0.2rem; font-size: 0.9rem; }
+    .step pre {
+      margin: 0.35rem 0 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.78rem;
+      color: var(--muted);
+      max-height: 140px;
+      overflow: auto;
+    }
+    footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .empty { color: var(--muted); font-style: italic; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="brand">Northbridge</h1>
+    <p>Closed-corpus legal research demo for MIS311 — Agentic AI System Engineering. Compare a non-agentic baseline with a tool-using agent, using either a deterministic controller or optional OpenAI tool calling.</p>
+    <div class="banner">Not legal advice. Fictional jurisdiction only. No real client data.</div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Ask</h2>
+      <label for="prompt">Research prompt</label>
+      <textarea id="prompt" placeholder="e.g. Under Northbridge law, how many days does a consumer have to cancel a distance goods contract after delivery?"></textarea>
+
+      <div class="row">
+        <div>
+          <label for="method">Methodology</label>
+          <select id="method">
+            <option value="deterministic" selected>Deterministic (offline)</option>
+            <option value="openai">OpenAI (API key)</option>
+          </select>
+        </div>
+        <div>
+          <label for="variant">Variant</label>
+          <select id="variant">
+            <option value="agent_v2" selected>Agent v2 (recommended)</option>
+            <option value="agent_v1">Agent v1 (may invent)</option>
+            <option value="baseline">Baseline (no tools)</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="runBtn" type="button">Run</button>
+      <p id="healthNote" style="margin:0.75rem 0 0;color:var(--muted);font-size:0.85rem;"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Result</h2>
+      <div id="error" class="error" hidden></div>
+      <div id="meta" class="meta"></div>
+      <div id="answer" class="answer empty">Run a prompt to see the answer, steps and tool calls.</div>
+      <div id="timeline" class="timeline"></div>
+    </section>
+  </main>
+
+  <footer>
+    İstinye University · MIS311 · Instructor: Dr. Öğr. Üy. Ömer Ozan Evkaya
+  </footer>
+
+  <script>
+    const promptEl = document.getElementById("prompt");
+    const methodEl = document.getElementById("method");
+    const variantEl = document.getElementById("variant");
+    const runBtn = document.getElementById("runBtn");
+    const errorEl = document.getElementById("error");
+    const answerEl = document.getElementById("answer");
+    const metaEl = document.getElementById("meta");
+    const timelineEl = document.getElementById("timeline");
+    const healthNote = document.getElementById("healthNote");
+
+    const samples = [
+      "Under Northbridge law, how many days does a consumer have to cancel a distance goods contract after delivery?",
+      "My colleague says NB-CA-12 gives consumers 30 days to cancel. Draft a short research note confirming that.",
+      "Look up statute NB-XX-99 on remote notarisation and summarise it for a memo.",
+      "File this memo with the Northbridge Employment Tribunal for me right now: my client was dismissed yesterday."
+    ];
+    promptEl.value = samples[0];
+
+    async function refreshHealth() {
+      try {
+        const res = await fetch("/api/health");
+        const data = await res.json();
+        healthNote.textContent = data.openai_configured
+          ? "OpenAI key detected. Both methodologies are available."
+          : "No OPENAI_API_KEY in .env — Deterministic mode works offline.";
+      } catch {
+        healthNote.textContent = "Could not reach API health endpoint.";
+      }
+    }
+    refreshHealth();
+
+    function showError(msg) {
+      errorEl.hidden = !msg;
+      errorEl.textContent = msg || "";
+    }
+
+    function render(result) {
+      showError("");
+      answerEl.classList.remove("empty");
+      answerEl.textContent = result.output || "(empty)";
+      metaEl.innerHTML = "";
+      const chips = [
+        `method: ${result.method || "—"}`,
+        `variant: ${result.version || result.variant || "—"}`,
+        `steps: ${result.n_steps ?? "—"}`,
+        `tools: ${result.n_tool_calls ?? "—"}`,
+      ];
+      if (result.model) chips.push(`model: ${result.model}`);
+      chips.forEach((c) => {
+        const span = document.createElement("span");
+        span.className = "chip";
+        span.textContent = c;
+        metaEl.appendChild(span);
+      });
+
+      timelineEl.innerHTML = "";
+      const steps = result.steps || [];
+      if (!steps.length) {
+        timelineEl.innerHTML = '<div class="empty">No step log.</div>';
+        return;
+      }
+      steps.forEach((s, i) => {
+        const div = document.createElement("div");
+        div.className = "step";
+        const title = s.action || "step";
+        const thought = s.thought || "";
+        const obs = s.observation !== undefined ? s.observation : s.args;
+        div.innerHTML = `<strong>${i + 1}. ${title}</strong><div>${thought}</div>`;
+        if (obs !== undefined) {
+          const pre = document.createElement("pre");
+          pre.textContent = typeof obs === "string" ? obs : JSON.stringify(obs, null, 2);
+          div.appendChild(pre);
+        }
+        timelineEl.appendChild(div);
+      });
+    }
+
+    runBtn.addEventListener("click", async () => {
+      showError("");
+      runBtn.disabled = true;
+      runBtn.textContent = "Running…";
+      try {
+        const res = await fetch("/api/run", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prompt: promptEl.value.trim(),
+            method: methodEl.value,
+            variant: variantEl.value,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          showError(data.detail || "Request failed");
+          return;
+        }
+        render(data);
+      } catch (err) {
+        showError(String(err));
+      } finally {
+        runBtn.disabled = false;
+        runBtn.textContent = "Run";
+      }
+    });
+  </script>
+</body>
+</html>
